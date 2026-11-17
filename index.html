@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Página personal con portafolio, blog, enlaces y contacto.">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Mi Espacio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: columna editorial única de 760px, hero tipográfico grande, secciones separadas por etiquetas en mono. */
+:root {
+  --bg: #F1F5F4;
+  --surface: #E6EDEB;
+  --fg: #0E2A2B;
+  --muted: #4F6767;
+  --line: #CAD6D3;
+  --accent: #2B4BDB;
+  --on-accent: #FFFFFF;
+  --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1517; --surface: #142225; --fg: #E6EEEC; --muted: #93AAA7;
+    --line: #25393C; --accent: #8DA2FF; --on-accent: #0C1517; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1517; --surface: #142225; --fg: #E6EEEC; --muted: #93AAA7;
+  --line: #25393C; --accent: #8DA2FF; --on-accent: #0C1517; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--f-body); font-size: 17px; line-height: 1.65;
+  padding-block: 0 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 760px; margin: 0 auto; }
+.note {
+  font-family: var(--f-mono); font-size: 12px; color: var(--muted);
+  border-bottom: 1px dashed var(--line); padding: 10px 0; margin-bottom: 8px;
+}
+nav { display: flex; flex-wrap: wrap; gap: 6px 22px; padding: 18px 0; font-family: var(--f-mono); font-size: 13px; }
+nav a { text-decoration: none; color: var(--muted); }
+nav a:hover { color: var(--accent); }
+nav .brand { color: var(--fg); font-weight: 500; margin-right: auto; }
+
+.hero { padding: 56px 0 48px; }
+.eyebrow { font-family: var(--f-mono); font-size: 13px; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 18px; }
+h1 {
+  font-family: var(--f-display); font-weight: 800; font-size: clamp(2.8rem, 10vw, 5.6rem);
+  line-height: .96; letter-spacing: -.035em; margin: 0 0 24px; text-wrap: balance;
+}
+h1 em { font-style: normal; color: var(--accent); }
+.lead { font-size: 1.2rem; color: var(--muted); max-width: 56ch; margin: 0 0 30px; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 600; font-size: 15px;
+  padding: 12px 20px; border-radius: 8px; border: 1.5px solid var(--fg);
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn:hover { transform: translateY(-1px); }
+
+section { padding: 44px 0; border-top: 1px solid var(--line); }
+.label { font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 20px; }
+h2 { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.7rem, 5vw, 2.3rem); letter-spacing: -.02em; line-height: 1.1; margin: 0 0 18px; text-wrap: balance; }
+p { margin: 0 0 16px; max-width: 65ch; }
+
+.skills { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 22px 0 0; list-style: none; }
+.skills li { font-family: var(--f-mono); font-size: 13px; background: var(--surface); padding: 5px 12px; border-radius: 999px; }
+
+.projects { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.project { background: var(--surface); border-radius: 12px; padding: 24px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.project .tag { font-family: var(--f-mono); font-size: 12px; color: var(--accent); }
+.project h3 { font-family: var(--f-display); font-size: 1.35rem; margin: 0; letter-spacing: -.01em; }
+.project p { color: var(--muted); font-size: 15.5px; margin: 0; }
+.project a { margin-top: auto; padding-top: 8px; font-weight: 600; font-size: 15px; color: var(--accent); text-decoration: none; }
+.project a:hover { text-decoration: underline; }
+
+.posts { list-style: none; margin: 0; padding: 0; }
+.posts li { display: grid; grid-template-columns: 96px 1fr; gap: 6px 20px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.posts li:first-child { padding-top: 0; }
+.posts time { font-family: var(--f-mono); font-size: 13px; color: var(--muted); padding-top: 4px; }
+.posts a { font-family: var(--f-display); font-weight: 700; font-size: 1.2rem; text-decoration: none; line-height: 1.3; }
+.posts a:hover { color: var(--accent); }
+.posts span { display: block; color: var(--muted); font-size: 15px; margin-top: 4px; }
+@media (max-width: 520px) { .posts li { grid-template-columns: 1fr; } }
+
+.links { display: grid; gap: 10px; }
+.links a {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  text-decoration: none; padding: 16px 20px; border: 1.5px solid var(--line); border-radius: 10px; font-weight: 600;
+}
+.links a small { font-family: var(--f-mono); font-weight: 400; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; text-align: right; }
+.links a:hover { border-color: var(--accent); color: var(--accent); }
+
+.contact-line { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.mail { font-family: var(--f-mono); font-size: 15px; background: var(--surface); padding: 8px 14px; border-radius: 8px; user-select: all; overflow-wrap: anywhere; }
+button.copy { font: inherit; font-size: 14px; font-weight: 600; background: none; color: var(--accent); border: 1.5px solid var(--accent); border-radius: 8px; padding: 7px 14px; cursor: pointer; }
+footer { font-family: var(--f-mono); font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 20px; }
+@media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="note">Contenido de ejemplo. Dime tu nombre, a qué te dedicas y tus enlaces, y lo reemplazo por tus datos reales.</div>
+
+  <nav aria-label="Secciones">
+    <a class="brand" href="#inicio">Tu Nombre</a>
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#blog">Blog</a>
+    <a href="#enlaces">Enlaces</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <p class="eyebrow">Diseño · Desarrollo · Escritura</p>
+    <h1>Hola, soy <em>Tu Nombre</em>. Construyo cosas útiles y las cuento bien.</h1>
+    <p class="lead">Trabajo en proyectos que mezclan tecnología y personas. Aquí encuentras lo que he hecho, lo que escribo y cómo contactarme.</p>
+    <div class="cta">
+      <a class="btn primary" href="#proyectos">Ver proyectos</a>
+      <a class="btn" href="#contacto">Escríbeme</a>
+    </div>
+  </header>
+
+  <section id="sobre-mi">
+    <p class="label">Sobre mí</p>
+    <h2>Una introducción corta, en primera persona.</h2>
+    <p>Cuéntale al visitante quién eres, qué te mueve y en qué trabajas hoy. Dos o tres párrafos son suficientes: tu recorrido, lo que haces mejor y qué tipo de proyectos te interesan.</p>
+    <p>Si buscas empleo, clientes o colaboraciones, dilo con claridad en esta sección.</p>
+    <ul class="skills" aria-label="Habilidades">
+      <li>Diseño de producto</li><li>JavaScript</li><li>Investigación</li><li>Redacción</li><li>Español · Inglés</li>
+    </ul>
+  </section>
+
+  <section id="proyectos">
+    <p class="label">Proyectos</p>
+    <h2>Trabajo seleccionado</h2>
+    <div class="projects">
+      <article class="project">
+        <span class="tag">2026 · Web</span>
+        <h3>Proyecto uno</h3>
+        <p>Qué problema resolvía, qué hiciste tú y qué resultado tuvo. Una o dos frases bastan.</p>
+        <a href="#proyectos">Ver proyecto →</a>
+      </article>
+      <article class="project">
+        <span class="tag">2025 · App</span>
+        <h3>Proyecto dos</h3>
+        <p>Describe la herramienta o producto, para quién era y qué tecnología usaste.</p>
+        <a href="#proyectos">Ver proyecto →</a>
+      </article>
+      <article class="project">
+        <span class="tag">2024 · Investigación</span>
+        <h3>Proyecto tres</h3>
+        <p>Un estudio, un informe o una colaboración. Añade un enlace al resultado final.</p>
+        <a href="#proyectos">Ver proyecto →</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="blog">
+    <p class="label">Blog</p>
+    <h2>Lo último que escribí</h2>
+    <ul class="posts">
+      <li>
+        <time datetime="2026-11-10">10 nov 2026</time>
+        <div><a href="#blog">Lo que aprendí construyendo mi primera página</a><span>Un resumen de decisiones, errores y lo que haría distinto.</span></div>
+      </li>
+      <li>
+        <time datetime="2026-10-22">22 oct 2026</time>
+        <div><a href="#blog">Cómo organizo mis proyectos del año</a><span>El sistema simple que uso para no perder el hilo.</span></div>
+      </li>
+      <li>
+        <time datetime="2026-09-03">3 sep 2026</time>
+        <div><a href="#blog">Tres lecturas que recomiendo este mes</a><span>Libros y artículos con una línea sobre por qué valen la pena.</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="enlaces">
+    <p class="label">Enlaces</p>
+    <h2>Dónde encontrarme</h2>
+    <div class="links">
+      <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn <small>linkedin.com/in/tu-usuario</small></a>
+      <a href="https://github.com" target="_blank" rel="noopener">GitHub <small>github.com/tu-usuario</small></a>
+      <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram <small>@tu-usuario</small></a>
+      <a href="https://x.com" target="_blank" rel="noopener">X <small>@tu-usuario</small></a>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <p class="label">Contacto</p>
+    <h2>¿Hablamos?</h2>
+    <p>Escríbeme si tienes un proyecto, una pregunta o quieres colaborar.</p>
+    <div class="contact-line">
+      <span class="mail" id="mail">tu@correo.com</span>
+      <button class="copy" id="copy" type="button">Copiar</button>
+    </div>
+  </section>
+
+  <footer>© 2026 Tu Nombre · Hecho con Claude</footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById("copy");
+  var mail = document.getElementById("mail");
+  btn.addEventListener("click", function () {
+    function selectText() {
+      var r = document.createRange(); r.selectNodeContents(mail);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "Seleccionado";
+    }
+    try {
+      navigator.clipboard.writeText(mail.textContent).then(function () {
+        btn.textContent = "Copiado";
+        setTimeout(function () { btn.textContent = "Copiar"; }, 1800);
+      }, selectText);
+    } catch (e) { selectText(); }
+  });
+})();
+</script>
+
+</body>
+</html>
