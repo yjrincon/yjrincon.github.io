@@ -52,6 +52,8 @@ nav a:hover { color: var(--accent); }
 nav .brand { color: var(--fg); font-weight: 500; margin-right: auto; }
 
 .hero { padding: 56px 0 48px; }
+.avatar { display: block; width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 0 28px; border: 3px solid var(--accent); }
+@media (min-width: 560px) { .avatar { width: 144px; height: 144px; } }
 .eyebrow { font-family: var(--f-mono); font-size: 13px; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 18px; }
 h1 {
   font-family: var(--f-display); font-weight: 800; font-size: clamp(2.8rem, 10vw, 5.6rem);
@@ -120,6 +122,7 @@ footer { font-family: var(--f-mono); font-size: 12px; color: var(--muted); borde
   </nav>
 
   <header class="hero" id="inicio">
+    <img class="avatar" src="foto-perfil.jpg" width="144" height="144" alt="Foto de Yeison Rincon">
     <p class="eyebrow">Análisis · Sistemas · Tecnología</p>
     <h1>Hola, soy <em>Yeison Rincon</em>, analista de sistemas.</h1>
     <p class="lead">Trabajo analizando y resolviendo problemas con tecnología. Aquí encuentras lo que he hecho y cómo contactarme.</p>
