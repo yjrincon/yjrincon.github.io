@@ -188,7 +188,7 @@ footer { font-family: var(--f-mono); font-size: 12px; color: var(--muted); borde
     </div>
   </section>
 
-  <footer>© 2026 Yeison Rincon · Hecho con Claude</footer>
+  <footer>© 2026 Yeison Rincon · Hecho con Claude<span id="visitas-wrap" hidden> · <span id="visitas"></span> visitas</span></footer>
 </div>
 
 <script>
@@ -211,5 +211,20 @@ footer { font-family: var(--f-mono); font-size: 12px; color: var(--muted); borde
 })();
 </script>
 
+<script>
+(function () {
+  try {
+    fetch("https://yjrincon.goatcounter.com/counter/TOTAL.json")
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (d) {
+        if (!d || !d.count) return;
+        document.getElementById("visitas").textContent = d.count;
+        document.getElementById("visitas-wrap").hidden = false;
+      })
+      .catch(function () {});
+  } catch (e) {}
+})();
+</script>
+<script data-goatcounter="https://yjrincon.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
